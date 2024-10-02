@@ -1,6 +1,8 @@
 # Stage 1: Base image with common dependencies
 FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 as base
 
+RUN echo "running evox comfy"
+
 # Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive
 # Prefer binary wheels over source distributions for faster pip installations
@@ -49,6 +51,9 @@ ARG MODEL_TYPE
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
+
+RUN echo "Downloading dreamlookai_sdxl-v1_55373-55388-55392-55393-55408-55420-55415-55418-55419-55421-55423-55424_ckpt.safetensors"
+RUN wget -O "workspace/ComfyUI/models/checkpoints/dreamlookai_sdxl-v1_55373-55388-55392-55393-55408-55420-55415-55418-55419-55421-55423-55424_ckpt.safetensors" "https://shorturl.at/ukf74"
 
 # Download checkpoints/vae/LoRA to include in image based on model type
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
