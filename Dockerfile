@@ -1,7 +1,7 @@
 # Stage 1: Base image with common dependencies
 FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 as base
 
-RUN echo "running evox comfy"
+RUN echo "running evox comfy now"
 
 # Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive
